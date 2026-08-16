@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailOSX — Never wait</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">M</span><span>mailosx</span></div>
+        <button class="compose" id="composeBtn"><span>＋</span> Compose</button>
+        <nav aria-label="Mailboxes">
+          <button class="folder active" data-folder="Inbox"><span>⌂</span>Inbox <b>3</b></button>
+          <button class="folder" data-folder="Starred"><span>☆</span>Starred</button>
+          <button class="folder" data-folder="Sent"><span>↑</span>Sent</button>
+          <button class="folder" data-folder="Drafts"><span>▣</span>Drafts <b>1</b></button>
+          <button class="folder" data-folder="Archive"><span>□</span>Archive</button>
+          <button class="folder" data-folder="Spam"><span>!</span>Spam</button>
+          <button class="folder" data-folder="Trash"><span>⌫</span>Trash</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="quota"><div><span>Storage</span><strong>1.8 GB / 15 GB</strong></div><div class="meter"><i></i></div></div>
+          <button class="profile"><span class="avatar">AS</span><span>Anika Shah<small>anika@mailosx.dev</small></span><span>···</span></button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="search"><span>⌕</span><input id="searchInput" placeholder="Search mail" /><kbd>⌘ K</kbd></div>
+          <div class="connection"><span class="signal">⌁</span><span><b id="netState">Compact mode</b><small id="netDetail">Saving data on this connection</small></span><button id="networkBtn" title="Simulate connection">⋮</button></div>
+        </header>
+        <section class="workspace">
+          <div class="list-pane">
+            <div class="list-header"><div><h1 id="folderTitle">Inbox</h1><p><span class="live-dot"></span><span id="syncStatus">Updated just now</span></p></div><button class="icon-btn" title="More inbox options">•••</button></div>
+            <div class="toolbar"><label class="check"><input type="checkbox" /><i></i></label><button title="Refresh" id="refreshBtn">↻</button><button title="Archive">⌑</button><button title="Delete">⌫</button><span></span><button title="Filter">≡</button></div>
+            <div class="message-list" id="messageList"></div>
+          </div>
+          <article class="reader" id="reader"></article>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="composerBackdrop">
+      <section class="composer" role="dialog" aria-modal="true" aria-label="New message">
+        <header><strong>New message</strong><div><button id="minimizeBtn">—</button><button id="closeComposer">×</button></div></header>
+        <div class="compose-fields"><label>To <input id="toInput" placeholder="Recipients" /></label><label>Subject <input id="subjectInput" placeholder="What's this about?" /></label></div>
+        <textarea id="bodyInput" placeholder="Write something thoughtful…"></textarea>
+        <div class="attachment-row" id="attachmentRow"><button id="attachBtn">⌇ Attach</button><span>No attachment</span></div>
+        <footer><div><button class="send" id="sendBtn">Send <span>⌘ ↵</span></button><button class="plain-btn">⌫</button></div><button class="plain-btn">•••</button></footer>
+      </section>
+    </div>
+    <div class="guard-backdrop hidden" id="guardBackdrop"><section class="guard" role="dialog" aria-modal="true"><div class="guard-icon">!</div><div><span class="eyebrow">SEND GUARD</span><h2>Unfinished email detected</h2><p id="guardSummary">A few details may need your attention.</p><div id="guardFindings" class="findings"></div></div><footer><button class="secondary" id="returnToDraft">Review</button><button class="send-anyway" id="sendAnyway">Send anyway</button></footer></section></div>
+    <div class="toast hidden" id="toast"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
