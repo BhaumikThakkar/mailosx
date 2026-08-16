@@ -1,0 +1,1 @@
+{"name":"mailosx-alpha","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.js","lint":"node --check src/app.js"}}

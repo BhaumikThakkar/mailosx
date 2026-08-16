@@ -1,0 +1,1 @@
+export const PMR=Object.freeze({L0:0,L1:1,L2:2,L3:3,L4:4,L5:5});export const label=n=>`PMR-L${n}`;export const levelFor=m=>m.attachments?.length&&m.attachments.every(a=>a.available)?5:m.html?3:m.body?2:1;
